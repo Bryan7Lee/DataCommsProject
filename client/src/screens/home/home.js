@@ -13,8 +13,8 @@ export default function Home() {
     <Router>
       <div className="main-body">
         <Routes>
-            <Route path="/" element={<Library />} />
-            <Route path="/player" element={<Player />} />
+            <Route path="/" element={<Player />} />
+            <Route path="/Library" element={<Library />} />
             <Route path="/groupsession" element={<GroupSession />} />
         </Routes>
         </div>
