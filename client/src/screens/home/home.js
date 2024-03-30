@@ -6,7 +6,7 @@ import Player from "../player/player";
 import GroupSession from "../groupsession/groupsession";
 import "./home.css";
 const socket = io.connect("https://localhost:3001")
- 
+
 export default function Home() {
 
   return (
