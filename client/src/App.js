@@ -2,7 +2,7 @@ import './App.css';
 import io from 'socket.io-client'
 const socket = io.connect("https://localhost:3001")
 
-function App() {
+export default function App() {
 
   const shareData = () => {
    // socket.emit();
@@ -12,8 +12,7 @@ function App() {
     <div className="App">
       <input placeholder="message"/>
       <button onClick={shareData}> Send message </button>
+      <p>testing title</p>
     </div>
   );
 }
-
-export default App;
