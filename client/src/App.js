@@ -4,14 +4,14 @@ const socket = io.connect("https://localhost:3001")
 
 export default function App() {
 
-  const shareData = () => {
-   // socket.emit();
+  const testingEmit = () => {
+    socket.emit("chat_msg", {message: "Hello world!"});
   };
 
   return (
     <div className="App">
       <input placeholder="message"/>
-      <button onClick={shareData}> Send message </button>
+      <button onClick={testingEmit}> Send message </button>
       <p>testing title</p>
     </div>
   );
