@@ -3,7 +3,7 @@ import React from "react";
 export default function Library() {
 
   return (
-    <div className="lib">
+    <div className="screen-container">
       Library
     </div>
   );
