@@ -12,6 +12,7 @@ export default function Home() {
 
   return (
     <Router>
+      <div className="filler"></div>
       <div className="main-body">
         <Taskbar />
         <Routes>
