@@ -14,7 +14,7 @@
 }
 
 .library-body{
-    height: 65%;
+    height: 81.5%;
     top: 22px;
     width: 20%;
     display: flex;
@@ -28,7 +28,7 @@
     position: relative;
     top: 13px;
     width: 20%;
-    height: 30%;
+    height: 13.5%;
     display: flex;
     align-items: left;
     flex-direction: column;

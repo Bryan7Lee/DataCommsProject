@@ -4,6 +4,7 @@
     flex-direction: column;
     background-color: #121212;
     border-radius: 15px;
+    justify-content: space-evenly;
 }
 
 .library-icon{
@@ -11,3 +12,4 @@
     height: 35px;
     margin-top: 20px;
 }
+
