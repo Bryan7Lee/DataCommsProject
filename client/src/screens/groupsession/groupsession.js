@@ -3,8 +3,8 @@ import React from "react";
 export default function GroupSession() {
 
   return (
-    <div>
-      GroupSession
+    <div className="screen-container flex">
+            Group Session
     </div>
   );
 }

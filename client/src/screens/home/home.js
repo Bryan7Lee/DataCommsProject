@@ -12,15 +12,15 @@ export default function Home() {
 
   return (
     <Router>
-      <div className="filler"></div>
       <div className="main-body">
-        <Taskbar />
+        <div className="filler"/>
+        <div className="taskbar-body"><Taskbar/></div>
+        <div className="library-body"><Library /></div>
         <Routes>
-            <Route path="/" element={<Player />} />
-            <Route path="/Library" element={<Library />} />
+            <Route path="/" element={<Player/>} />
             <Route path="/groupsession" element={<GroupSession />} />
         </Routes>
-        </div>
+      </div>
     </Router>
   );
 }

@@ -1,0 +1,13 @@
+.library-icon{
+    width: 140px;
+    height: 35px;
+    margin-top: 20px;
+}
+
+.library{
+    display: flex;
+    align-items: left;
+    flex-direction: column;
+    background-color: #121212;
+    border-radius: 15px;
+}

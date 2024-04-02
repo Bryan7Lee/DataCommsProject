@@ -13,8 +13,10 @@
   }
 
 .body{
-    width: 30%;
-    height: 100%;
+    width: 75%;
+    height: 93%;
+    position: relative;
+    margin: auto;
     display: flex;
     align-items: center;
     justify-content: center;

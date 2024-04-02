@@ -9,14 +9,7 @@ export default function Player() {
   console.log(location);
 
   return (
-    <div className="screen-container flex">
-            Player
-      <div className="left-player-body">
-
-      </div>
-      <div className="right-player-body">
-
-      </div>
+    <div className = "screen-container flex">player
     </div>
   );
 }
