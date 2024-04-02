@@ -8,8 +8,17 @@
     border-radius: 15px;
     opacity: 1;
     color: white;
+    flex-direction: row;
   }
   
   .flex {
     display: flex;
   }
+
+    /*
+    width: calc(100% - 100px);
+  height: 96.5%;
+  background-color: #121212;
+  border-radius: 30px;
+  opacity: 1;
+  */

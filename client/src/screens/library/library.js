@@ -3,7 +3,7 @@ import { IconContext } from "react-icons";
 import { BiLibrary } from "react-icons/bi";
 import "./library.css"
 
-export default function Library(props) {
+export default function Library() {
 
   return (
     <div className="btn-body">

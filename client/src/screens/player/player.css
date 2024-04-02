@@ -1,26 +1,26 @@
-.left-player-body {
-    width: 68%;
-    margin-right: 2%;
-    height: 100%;
+.player-body {
+  width: 68%;
+  height: 100%;
+  margin-right: 2px;
   }
   
-  .right-player-body {
-    width: 30%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
+.queue-body {
+  width: 30%;
+  height: 100%;
+}
 
 .body{
-    width: 75%;
-    height: 93%;
-    position: relative;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #121212;
+  width: 77%;
+  position: relative;
+  right: 5px;
+  margin: auto;
+  height: 96.5%;
+  background-color: #121212;
+  border-radius: 15px;
+  opacity: 1;
+  color: white;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
 .music-player{
@@ -29,4 +29,8 @@
     border-radius: 15px;
     background-color: #1ED760;
     padding: 30px;
+}
+
+flex {
+  display: flex;
 }
