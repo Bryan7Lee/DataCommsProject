@@ -1,27 +1,27 @@
 let songs = [
     {
         title: 'Hey Soul Sister',
-        path:  '/Songs/Hey Soul Sister.m4a',
+        path:  '/client/src/assets/Hey Soul Sister.m4a',
         artist:' Train',
-        cover: '/Songs/HeySoulSisterCover.jpg',
+        cover: '/client/src/assets/HeySoulSisterCover.jpg',
     },
     {
         title: 'Leave Me Slowly',
-        path:  '/Songs/Leave Me Slowly.m4a',
+        path:  '/client/src/assets/Leave Me Slowly.m4a',
         artist:'Lewis Capaldi',
-        cover: '/Songs/LeaveMeSlowlyCover.jpg',
+        cover: '/client/src/assets/LeaveMeSlowlyCover.jpg',
     },
     {
         title: 'On The Loose',
-        path:  '/Songs/On the Loose.m4a',
+        path:  '/client/src/assets/On the Loose.m4a',
         artist:' Niall Horan',
-        cover: '/Songs/OnTheLooseCover.jpg',
+        cover: '/client/src/assets/OnTheLooseCover.jpg',
     },
     {
         title: 'Until I Found You',
-        path:  '/Songs/Until I Found You.m4a',
+        path:  '/client/src/assets/Until I Found You.m4a',
         artist:' Stephen Sanchez',
-        cover: '/Songs/UntilIFoundYouCover.png',
+        cover: '/client/src/assets/UntilIFoundYouCover.png',
     },
 ];
 export default songs;

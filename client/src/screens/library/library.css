@@ -6,7 +6,7 @@
 }
 
 .library{
-    width: 220px;
+    width: 100%;
     display: flex;
     align-items: left;
     flex-direction: column;
@@ -38,27 +38,16 @@
 
 
 .song-button {
-    margin-top: 5px;
-    margin-right: 30px;
-    display:block;
-    width: 290px; /* Adjust width as needed */
-    height: 70px;
-    padding: 10px; /* Adjust padding as needed */
-    border: 1px solid #161616; /* Add border */
+    width: 100%; /* Adjust width as needed */
+    border: 1px solid #121212; /* Add border */
     background-color: #161616; /* Add background color */
-    text-align: right; /* Align text to the left */
+    text-align: center; /* Align text to the left */
     cursor: pointer; /* Change cursor to pointer on hover */
     border-radius: 5px;
 }
 
 .song-button:hover {
     background-color: #343333; /* Change background color on hover */
-}
-
-.song-list{
-    margin-top: 10px;
-    
-
 }
 
 .song-list ul{
@@ -72,7 +61,7 @@
 }
 
 .song-info img {
-    width: 10px; /* Adjust the width of the cover image */
+    width: 50px; /* Adjust the width of the cover image */
     height: auto; /* Maintain aspect ratio */
     margin-right: 10px;
   }
@@ -82,5 +71,5 @@
 
 /* Add specificity to the song artist selector */
 .song-button .song-artist {
-    font-size: 10px; /* Adjust the font size of the song artist */
+    font-size: 12px; /* Adjust the font size of the song artist */
 }
