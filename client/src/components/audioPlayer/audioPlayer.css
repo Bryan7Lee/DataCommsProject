@@ -1,3 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+:root{
+    --mainColor: #fff;
+    --mainLightColor: rgba(235,235,235,0.5);
+    --mainDimColor: rgb(228,228,228);
+}
+
 .MUSICPLAYERBODYHERE {
   display: flex;
   width: 100%;
@@ -95,6 +103,11 @@
 .timestamps span{
   font-size: 13px;
   color: #A7A7A7;
+}
+
+.controls {
+  margin-top: 20px;
+  justify-content: space-evenly;
 }
 
 .song-duration {

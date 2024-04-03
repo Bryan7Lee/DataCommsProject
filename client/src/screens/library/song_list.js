@@ -1,15 +1,15 @@
 let songs = [
     {
-        title: 'song 1',
-        path:  'path 1',
-        artist:' artist 1',
-        cover: 'cover 1.png',
+        title: 'Superpowers',
+        path:  'superpowers-danielcaesar',
+        artist:'Daniel Caesar',
+        cover: 'superpowers-danielcaesar',
     },
     {
-        title: 'song 2',
-        path:  'path 2',
-        artist:' artist 2',
-        cover: 'cover 2.png',
+        title: 'See You Again',
+        path:  'seeyouagain_tylerthecreator',
+        artist:'Tyler, The Creator',
+        cover: 'seeyouagain_tylerthecreator',
     },
     {
         title: 'song 1',

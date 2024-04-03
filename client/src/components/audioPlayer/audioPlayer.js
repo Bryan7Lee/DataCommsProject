@@ -1,7 +1,20 @@
-import React from "react";
+import React, {useRef, useState} from "react";
 import "./audioPlayer.css";
+import "../../screens/library/song_list"
+import { IconContext } from "react-icons";
+import { IoPlaySkipBackSharp } from "react-icons/io5";
+import { IoPauseCircle } from "react-icons/io5";
+import { IoPlayCircle  } from "react-icons/io5";
+import { IoPlaySkipForwardSharp } from "react-icons/io5";
 
 export default function AudioPlayer(){
+    
+    const [audioProgress, setAudioProgress] = useState(60);
+
+    const updateProgressBar = (e)=>{
+        setAudioProgress(e.target.value)
+    }
+
     return (
     <div className="MUSICPLAYERBODYHERE">
         <div className="img-area">
@@ -17,18 +30,18 @@ export default function AudioPlayer(){
             </div>
             <div className="timestamps">
                 <span className="current">0:00</span>
-                <span className="max">3:00</span>
+                <span className="total">3:00</span>
             </div>
         </div>
         <div className="controls">
-            <i id="repeat-plist" class="material-icons" title="Playlist looped">repeat</i>
-            <i id="prev" class="material-icons">skip_previous</i>
-            <div class="play-pause">
-                <i class="material-icons play">play_arrow</i>
-            </div>
-            <i id="next" class="material-icons">skip_next</i>
-            <i id="more-music" class="material-icons">queue_music</i>
+            <IconContext.Provider value={{ size: "50px"}}>
+                <IoPlaySkipBackSharp />
+                <IoPlayCircle />
+                <IoPlaySkipForwardSharp/>
+            </IconContext.Provider>
         </div>
+        <script src="js/song-list.js"></script>
+        <script src="js/song-list.js"></script>
     </div>
     );
 }
