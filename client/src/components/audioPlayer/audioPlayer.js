@@ -15,6 +15,13 @@ export default function AudioPlayer(){
         setAudioProgress(e.target.value)
     }
 
+    const sliderEl = document.querySelector("#range")
+
+    const progressScript = (e)=>{
+        const sliderValue = sliderEl.value;
+        sliderEl.style.background = `linear-gradient(to right, #f50 ${sliderValue}%, #ccc ${sliderValue}%)`;
+    }
+
     return (
     <div className="MUSICPLAYERBODYHERE">
         <div className="img-area">
@@ -24,15 +31,12 @@ export default function AudioPlayer(){
             <p className="song-title">Song Title</p>
             <p className="song-artist">Artist</p>
         </div>
-        <div className="progress-area">
-            <div className="progress-bar">
-                <span></span>
-            </div>
+            <input type="range" name="progress-bar" className='progress-bar'
+                id="range" value={audioProgress} oninput={progressScript} onChange={updateProgressBar}/>
             <div className="timestamps">
-                <span className="current">0:00</span>
-                <span className="total">3:00</span>
+                <p className="current">0:00</p>
+                <p className="total">3:00</p>
             </div>
-        </div>
         <div className="controls">
             <IconContext.Provider value={{ size: "50px"}}>
                 <IoPlaySkipBackSharp />

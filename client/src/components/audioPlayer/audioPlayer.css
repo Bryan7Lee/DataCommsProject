@@ -55,54 +55,72 @@
   font-weight: 500;
 }
 
-.progress-area{
-  height:6px;
-  width: 525px;
-  background: #4D4D4D;
-  border-radius: 50px;
+.progress-bar {
+  width: 510px;
   cursor: pointer;
+  outline: none;
+  height: 6px;
+  background: #CCC;
+
+  -webkit-appearance: none;
+  appearance: none;
+
+  border-radius: 100px;
+  background: transparent;
+  
+  /* TRACK SETTINGS*/
+  --track-color: #4D4D4D;
+  --track-color-filled: #FFFFFF;
+  --track-color-filled-hover: #1DB954;
+  /* thumb SETTINGS*/
+  --thumb-color: #1DB954; /* Default color */
+  --thumb-color-hover: #ffffff; /* Color on hover */
 }
 
-.progress-area .progress-bar {
-  height: inherit;
-  width: 50%;
-  position: relative;
-  border-radius: inherit;
-  background: #FFFFFF;
+/* Style the track */
+.progress-bar::-webkit-slider-runnable-track {
+  background-color: var(--track-color);
+  height: 0.5rem;
+  border-radius: 9999999999999px;
 }
 
-.progress-bar::before{
-  content: "";
-  position: absolute;
-  height: 12px;
-  width: 12px;
-  border-radius: 100%;
-  z-index: 2;
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(-50%);
-  background: inherit;
+.progress-bar::-moz-range-track {
+  background-color: var(--track-color);
+  height: 0.5rem;
+  border-radius: 9999999999999px;
 }
 
-.progress-area:hover .progress-bar::before{
-  opacity: 1;
-  background: #FFF;
-  pointer-events: auto;
+/* Style the thumb */
+.progress-bar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  
+  background-color: #FFFFFF;
+  margin-top: -4px;
+  height: 1rem;
+  width: 1rem;
+  border-radius: 100px;
+
+  transition: .2s ease-in-out;
 }
 
-.progress-area:hover .progress-bar{
-  opacity: 1;
-  background: #1ED760;
-  pointer-events: auto;
+.progress-bar::-moz-range-thumb {
+  background-color: #FFFFFF;
+  border: none;
+  height: 1rem;
+  width: 1rem;
+  border-radius: 100px;
+
+  transition: .2s ease-in-out;
 }
 
-.progress-area .timestamps {
-  margin-top: 2px;
-}
-
-.timestamps span{
+.timestamps {
+  display: flex;
+  justify-content: space-between;
+  width: 510px;
   font-size: 13px;
   color: #A7A7A7;
+  font-weight: 600;
 }
 
 .controls {
