@@ -1,15 +1,20 @@
 .player-body {
   width: 68%;
-  height: 100%;
-  margin-right: 2px;
+  height: 97%;
+  margin-left: 11px;
+  margin: auto;
+  opacity: 1;
   }
   
 .queue-body {
   width: 30%;
   height: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
 }
 
-.body{
+.page-body{
   width: 77%;
   position: relative;
   right: 5px;
@@ -21,14 +26,6 @@
   color: white;
   flex-direction: row;
   justify-content: space-evenly;
-}
-
-.music-player{
-    width: 350px;
-    height: 550px;
-    border-radius: 15px;
-    background-color: #1ED760;
-    padding: 30px;
 }
 
 flex {
