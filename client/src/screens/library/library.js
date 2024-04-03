@@ -2,20 +2,48 @@ import React, { useEffect, useState } from "react";
 import { IconContext } from "react-icons";
 import { BiLibrary } from "react-icons/bi";
 import "./library.css"
-import renderSongs from "./song_list.js"; // Import the renderSongs function
+import songs from "./song_list.js"; // Import the renderSongs function
 
 export default function Library() {
   
-  const [songs, setSongs] = useState([]);
+  const [songList, setSongsList] = useState([]);
   //call renderSongs()
   useEffect(() => {
 
-    const fetchedSongs = renderSongs();
-    setSongs(fetchedSongs);
+    setSongsList(songs);
 
   }, []);
 
 
+  return (
+    <div className="library">
+      <div className="btn-body">
+        <IconContext.Provider value={{ size: "22px", className: "btn-icon" }}>
+          {<BiLibrary />}
+        </IconContext.Provider>
+        <p className="lib-title">Library</p>
+      </div>
+      <div className="song-list">
+        <ul>
+          {songList.map((song, index) => (
+            <li key={index}>
+              <button className="song-button">
+                <div className="song-info">
+                  <img src={song.cover} alt={""} />
+                  <div>
+                    <p className="song-title">{song.title}</p>
+                    <p className="song-artist">{song.artist}</p>
+                  </div>
+                </div>
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+ }  
+/*
   return (
     <div className="btn-body">
       <IconContext.Provider value={{ size: "22px", className: "btn-icon" }}>
@@ -24,19 +52,21 @@ export default function Library() {
       </IconContext.Provider>
       <div className="song-list">
         <ul>
-          {songs.map((song,index) => (
+          {songList.map((song,index) => (
             <li key={index}>
+              <button className="song-button">
               <div className="song-info">
-                <img src={song.cover} alt={song.title} />
+                <img src={song.cover} alt={""}/>
                 <div>
                   <p className="song-title">{song.title}</p>
                   <p className="song-artist">{song.artist}</p>
                 </div>
               </div>
+        </button>       
             </li>
           ))}
         </ul>
       </div>
     </div>
   );
-}
+}*/

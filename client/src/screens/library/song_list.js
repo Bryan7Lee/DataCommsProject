@@ -23,8 +23,10 @@ let songs = [
         artist:' Stephen Sanchez',
         cover: '/Songs/UntilIFoundYouCover.png',
     },
-]
+];
+export default songs;
 
+/*
 export default function renderSongs(){
         const songList = document.getElementById("song-list");
         if (!songList){
@@ -58,4 +60,4 @@ export default function renderSongs(){
     
     });
     return songElements;
-}
+} */
