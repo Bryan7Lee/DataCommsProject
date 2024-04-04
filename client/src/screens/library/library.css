@@ -41,9 +41,12 @@
     width: 100%; /* Adjust width as needed */
     border: 1px solid #121212; /* Add border */
     background-color: #161616; /* Add background color */
-    text-align: center; /* Align text to the left */
+    text-align: left; /* Align text to the left */
     cursor: pointer; /* Change cursor to pointer on hover */
     border-radius: 5px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
 }
 
 .song-button:hover {
@@ -60,16 +63,24 @@
     align-items: right;
 }
 
-.song-info img {
+.song-button .song-info img {
     width: 50px; /* Adjust the width of the cover image */
     height: auto; /* Maintain aspect ratio */
-    margin-right: 10px;
+    margin-right: 25px;
+    margin-left: 20px;
+    
+  }
+
+  .song-button .song-details{
+    display: flex;
+    flex-direction: column;
+    
+    
   }
   .song-button .song-title {
     font-size: 12px; /* Adjust the font size of the song title */
 }
 
-/* Add specificity to the song artist selector */
 .song-button .song-artist {
     font-size: 12px; /* Adjust the font size of the song artist */
 }
