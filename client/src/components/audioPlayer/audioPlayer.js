@@ -1,6 +1,5 @@
 import React, {useRef, useState} from "react";
 import "./audioPlayer.css";
-import "../../screens/library/song_list"
 import { IconContext } from "react-icons";
 import { IoPlaySkipBackSharp } from "react-icons/io5";
 import { IoPauseCircle } from "react-icons/io5";
@@ -9,38 +8,83 @@ import { IoPlaySkipForwardSharp } from "react-icons/io5";
 
 export default function AudioPlayer(){
     
-    const [audioProgress, setAudioProgress] = useState(60);
+    const currentAudio = useRef()
+    const [audioProgress, setAudioProgress] = useState(0);
+    const [isAudioPlaying, setIsAudioPlaying] = useState(false);
+    const [songCurrentTime, setCurrentTime] = useState('00:00');
+    const [songTotalLength, setTotalLength] = useState('03:00');
+
+    /* THIS NEEDS TO BE UPDATED TO USE THE SONG LIBRARY AND CHANGE FOR WHEN SONG CHANGES*/ 
+    // holds all song details of CURRENT SONG 
+    const [currentSongDetails, changeSongDetails] = useState({
+        songTitle: 'See You Again',
+        songArtist: 'Tyler, the Creator',
+        songPath: process.env.PUBLIC_URL + '/seeyouagain_tylerthecreator.mp3',
+        songCover: process.env.PUBLIC_URL + '/seeyouagain_tylerthecreator.jpg'
+    })
 
     const updateProgressBar = (e)=>{
-        setAudioProgress(e.target.value)
+        currentAudio.current.currentTime = (currentAudio.current.duration / 100) * e.target.value;
+        setAudioProgress(e.target.value+1);
     }
 
-    const sliderEl = document.querySelector("#range")
+    const goToNextSong = ()=>{
 
-    const progressScript = (e)=>{
-        const sliderValue = sliderEl.value;
-        sliderEl.style.background = `linear-gradient(to right, #f50 ${sliderValue}%, #ccc ${sliderValue}%)`;
+    }
+
+    //play and pause audio
+    const audioPausePlay = ()=>{
+        const audio = currentAudio.current
+        audio.volume = .2
+
+        if (audio.paused) {
+            audio.play();
+            setIsAudioPlaying(true)
+          } else{
+            audio.pause();
+            setIsAudioPlaying(false)
+          }
+    }
+
+    //update song progress
+    const handleAudioUpdate = () =>{
+        const audio = currentAudio.current
+        
+        //Input total length of the audio
+        let minutes = Math.floor(audio.duration / 60);
+        let seconds = Math.floor(audio.duration % 60);
+        let musicTotalLength0 = `${minutes <10 ? `0${minutes}` : minutes} : ${seconds <10 ? `0${seconds}` : seconds}`;
+        setTotalLength(musicTotalLength0);
+
+        //Input Music Current Time
+        let currentMin = Math.floor(currentAudio.current.currentTime / 60);
+        let currentSec = Math.floor(currentAudio.current.currentTime % 60);
+        let musicCurrentT = `${currentMin <10 ? `0${currentMin}` : currentMin} : ${currentSec <10 ? `0${currentSec}` : currentSec}`;
+        setCurrentTime(musicCurrentT);
+
+        const progress = parseInt((currentAudio.current.currentTime / currentAudio.current.duration) * 100);
+        setAudioProgress(isNaN(progress)? 0 : progress)
     }
 
     return (
     <div className="MUSICPLAYERBODYHERE">
+        <audio src = {currentSongDetails.songPath} ref={currentAudio} onEnded={goToNextSong} onTimeUpdate={handleAudioUpdate}></audio>
         <div className="img-area">
-            <img src="https://images.ctfassets.net/hrltx12pl8hq/28ECAQiPJZ78hxatLTa7Ts/2f695d869736ae3b0de3e56ceaca3958/free-nature-images.jpg?fit=fill&w=1200&h=630" alt =""></img>
+            <img src={currentSongDetails.songCover} alt ="song cover img"></img>
         </div>
         <div className="song-details">
-            <p className="song-title">Song Title</p>
-            <p className="song-artist">Artist</p>
+            <p className="song-title">{currentSongDetails.songTitle}</p>
+            <p className="song-artist">{currentSongDetails.songArtist}</p>
         </div>
-            <input type="range" name="progress-bar" className='progress-bar'
-                id="range" value={audioProgress} oninput={progressScript} onChange={updateProgressBar}/>
-            <div className="timestamps">
-                <p className="current">0:00</p>
-                <p className="total">3:00</p>
-            </div>
+        <input type="range" name="songProgressBar" className='progress-bar' onChange={updateProgressBar} value={audioProgress} />
+        <div className="timestamps">
+            <p className="current">{songCurrentTime}</p>
+            <p className="total">{songTotalLength}</p>
+        </div>
         <div className="controls">
-            <IconContext.Provider value={{ size: "50px"}}>
+            <IconContext.Provider value={{ size: "40px"}}>
                 <IoPlaySkipBackSharp />
-                <IoPlayCircle />
+                <IoPlayCircle onClick={audioPausePlay}/>
                 <IoPlaySkipForwardSharp/>
             </IconContext.Provider>
         </div>
