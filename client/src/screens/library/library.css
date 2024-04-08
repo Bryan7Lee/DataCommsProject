@@ -69,15 +69,14 @@
     margin-right: 25px;
     margin-left: 20px;
     
-  }
+}
 
-  .song-button .song-details{
+.song-button .song-details{
     display: flex;
     flex-direction: column;
-    
-    
-  }
-  .song-button .song-title {
+}
+
+.song-button .song-title {
     font-size: 12px; /* Adjust the font size of the song title */
 }
 

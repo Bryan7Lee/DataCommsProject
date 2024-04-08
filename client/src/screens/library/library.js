@@ -40,7 +40,7 @@ const handleSongButtonDoubleClick = (song) => {
             <li key={index}>
               <button className="song-button" onClick={() => handleSongButtonClick(song)} onDoubleClick={()=> handleSongButtonDoubleClick(song)}>
                 <div className="song-info">
-                  <img src={song.cover} alt={"IMAGE"} />
+                  <img src={song.cover} alt={"ALBUM"} />
                   </div>
                   <div className="song-details">
                     <p className="song-title">{song.title}</p>
