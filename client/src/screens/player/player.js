@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./player.css";
 import { useLocation } from "react-router-dom";
 import { IconContext } from "react-icons";
@@ -8,12 +8,7 @@ import {qsongs} from "./queueFunctions"
 
 export default function Player() {
 
-  const [queuedSongs, setQueuedSongs] = useState([]);
 
-  useEffect(()=>{
-    setQueuedSongs(qsongs);
-
-  }, []);
 
 
   
@@ -32,7 +27,7 @@ export default function Player() {
         </div>
         <div className="queue-list">
           <ul>
-            {queuedSongs.map((song,index)=> (
+            {qsongs.map((song,index)=> (
               <li key={index}>
                 <button className="qsong-button">
                 <div className="qsong-info">

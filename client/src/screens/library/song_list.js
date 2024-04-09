@@ -25,39 +25,3 @@ let songs = [
     },
 ];
 export default songs;
-
-/*
-export default function renderSongs(){
-        const songList = document.getElementById("song-list");
-        if (!songList){
-            console.error("Element with ID 'song-list' not found.");
-            return;
-        }
-
-    const songElements = [];
-
-    songs.forEach((song,index) => {
-        const li = document.createElement("li");
-        li.setAttribute("data-index", index);
-
-        const title = document.createElement("span");
-        title.textContent = song.title;
-
-        const artist = document.createElement("span");
-        artist.textContent = song.artist;
-
-        const cover = document.createElement("img");
-        cover.src = song.cover;
-        cover.alt = song.title;
-
-        li.appendChild(cover);
-        li.appendChild(title);
-        li.appendChild(artist);
-
-        songList.appendChild(li);
-
-        songElements.push(li);
-    
-    });
-    return songElements;
-} */
