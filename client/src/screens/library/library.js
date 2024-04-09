@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { IconContext } from "react-icons";
 import { BiLibrary } from "react-icons/bi";
-import { BsSoundwave } from "react-icons/bs";
 import "./library.css"
 import songs from "./song_list.js"; // Import the renderSongs function
-
+import {addToQueue, qsongs} from "../player/queueFunctions"
 export default function Library() {
   
   const [songList, setSongsList] = useState([]);
+  //const [queue, setQueue] = useState([]);
   //call renderSongs()
   useEffect(() => {
 
@@ -18,6 +18,8 @@ export default function Library() {
  const handleSongButtonClick = (song) => {
   console.log("Song clicked:", song.title);
   //add to the queue somehow?
+  addToQueue(song.title, song.artist);
+  console.log("Queue:", qsongs);
 
 };
 
