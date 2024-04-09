@@ -5,6 +5,17 @@ import { BsSoundwave } from "react-icons/bs";
 import "./library.css"
 import songs from "./song_list.js"; // Import the renderSongs function
 
+function display_cover(src){
+  var img = document.createElement("img");
+  img.src = src;
+  img.width = 500;
+  img.height = 500;
+  img.alt = 'ALBUM';
+
+  document.body.appendChild(img);
+  
+}
+
 export default function Library() {
   
   const [songList, setSongsList] = useState([]);
@@ -18,6 +29,7 @@ export default function Library() {
  const handleSongButtonClick = (song) => {
   console.log("Song clicked:", song.title);
   //add to the queue somehow?
+  display_cover('/client/src/assets/HeySoulSisterCover.jpg');
 
 };
 
@@ -26,8 +38,8 @@ const handleSongButtonDoubleClick = (song) => {
   //start playing the song immediately?
 
 };
-//test
-  return (
+
+return (
     <div className="library">
       <div className="btn-body">
         <IconContext.Provider value={{ size: "22px", className: "btn-icon" }}>
@@ -41,7 +53,7 @@ const handleSongButtonDoubleClick = (song) => {
             <li key={index}>
               <button className="song-button" onClick={() => handleSongButtonClick(song)} onDoubleClick={()=> handleSongButtonDoubleClick(song)}>
                 <div className="song-info">
-                  <img src={song.cover} alt={"ALBUM"} />
+                <img src={song.cover} alt={"ALBUM"} />
                   </div>
                   <div className="song-details">
                     <p className="song-title">{song.title}</p>
