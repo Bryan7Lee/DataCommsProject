@@ -10,12 +10,7 @@ import {qsongs} from "./queueFunctions"
 
 export default function Player() {
 
-  const [queuedSongs, setQueuedSongs] = useState([]);
 
-  useEffect(()=>{
-    setQueuedSongs(qsongs);
-
-  }, []);
 
 
   const location = useLocation();
@@ -40,7 +35,7 @@ export default function Player() {
         </div>
         <div className="queue-list">
           <ul>
-            {queuedSongs.map((song,index)=> (
+            {qsongs.map((song,index)=> (
               <li key={index}>
                 <button className="qsong-button">
                 <div className="qsong-info">

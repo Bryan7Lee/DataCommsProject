@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { IconContext } from "react-icons";
 import { BiLibrary } from "react-icons/bi";
 import "./library.css"
-import songs from "./song_list.js"; // Import the renderSongs function
+import songs from "./song_list.js"; // Import the songs 
 
 function display_cover(src){
   var img = document.createElement("img");
@@ -17,9 +17,9 @@ function display_cover(src){
 
 export default function Library() {
   
+
   const [songList, setSongsList] = useState([]);
   //const [queue, setQueue] = useState([]);
-  //call renderSongs()
   useEffect(() => {
 
     setSongsList(songs);
@@ -30,8 +30,6 @@ export default function Library() {
   console.log("Song clicked:", song.title);
   //add to the queue somehow?
   //addToQueue(song.title, song.artist);
-  //console.log("Queue:", qsongs);
-
 };
 
 const handleSongButtonDoubleClick = (song) => {
@@ -52,7 +50,7 @@ return (
         <ul>
           {songList.map((song, index) => (
             <li key={index}>
-              <button className="song-button" onClick={() => handleSongButtonClick(song)} onDoubleClick={()=> handleSongButtonDoubleClick(song)}>
+              <button className="song-button" onClick={() => handleSongButtonClick(song)}  onDoubleClick={()=> handleSongButtonDoubleClick(song)}>
                 <div className="song-info">
                 <img src={song.cover} alt={"ALBUM"} />
                   </div>
