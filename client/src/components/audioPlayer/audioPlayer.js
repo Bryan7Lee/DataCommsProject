@@ -5,12 +5,14 @@ import { IoPlaySkipBackSharp } from "react-icons/io5";
 import { IoPauseCircle } from "react-icons/io5";
 import { IoPlayCircle  } from "react-icons/io5";
 import { IoPlaySkipForwardSharp } from "react-icons/io5";
+import songs from "../../screens/library/song_list";
 
 export default function AudioPlayer(){
     
     const currentAudio = useRef()
     const [audioProgress, setAudioProgress] = useState(0);
     const [isAudioPlaying, setIsAudioPlaying] = useState(false);
+    const [listIndex, setListIndex] = useState(0);
     const [songCurrentTime, setCurrentTime] = useState('00:00');
     const [songTotalLength, setTotalLength] = useState('03:00');
 
@@ -29,7 +31,7 @@ export default function AudioPlayer(){
     }
 
     const goToNextSong = ()=>{
-
+        
     }
 
     //play and pause audio

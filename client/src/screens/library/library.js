@@ -52,7 +52,7 @@ return (
             <li key={index}>
               <button className="song-button" onClick={() => handleSongButtonClick(song)}  onDoubleClick={()=> handleSongButtonDoubleClick(song)}>
                 <div className="song-info">
-                <img src={song.cover} alt={"ALBUM"} />
+                <div className="img-wrapper-lib"><img src={song.cover} alt={"ALBUM"} /></div>
                   </div>
                   <div className="song-details">
                     <p className="song-title-library">{song.title}</p>

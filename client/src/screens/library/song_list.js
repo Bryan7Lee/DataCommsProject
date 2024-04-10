@@ -1,39 +1,33 @@
-let songs = [
-    {
-        title: 'Superpowers',
-        path:  'superpowers-danielcaesar',
-        artist:'Daniel Caesar',
-        cover: 'superpowers-danielcaesar',
-    },
+const songs = [
     {
         title: 'See You Again',
-        path:  'seeyouagain_tylerthecreator',
+        path:  process.env.PUBLIC_URL + '/seeyouagain_tylerthecreator.mp3',
         artist:'Tyler, The Creator',
-        cover: 'seeyouagain_tylerthecreator',
+        cover: process.env.PUBLIC_URL + '/seeyouagain_tylerthecreator.jpg'
     }, 
     {
         title: 'Hey Soul Sister',
-        path:  '/client/src/assets/Hey Soul Sister.m4a',
+        path:  process.env.PUBLIC_URL + '/Hey Soul Sister.m4a',
         artist:' Train',
-        cover: '/client/src/assets/HeySoulSisterCover.jpg',
+        cover: process.env.PUBLIC_URL + '/HeySoulSisterCover.jpg',
     },
     {
         title: 'Leave Me Slowly',
-        path:  '/client/src/assets/Leave Me Slowly.m4a',
+        path:  process.env.PUBLIC_URL + '/Leave Me Slowly.m4a',
         artist:'Lewis Capaldi',
-        cover: '/client/src/assets/LeaveMeSlowlyCover.jpg',
+        cover: process.env.PUBLIC_URL + '/LeaveMeSlowlyCover.jpg',
     },
     {
         title: 'On The Loose',
-        path:  '/client/src/assets/On the Loose.m4a',
+        path:  process.env.PUBLIC_URL + '/On the Loose.m4a',
         artist:' Niall Horan',
-        cover: '/client/src/assets/OnTheLooseCover.jpg',
+        cover: process.env.PUBLIC_URL + '/OnTheLooseCover.jpg',
     },
     {
         title: 'Until I Found You',
-        path:  '/client/src/assets/Until I Found You.m4a',
+        path:  process.env.PUBLIC_URL + '/UntilIFoundYou.m4a',
         artist:' Stephen Sanchez',
-        cover: '/client/src/assets/UntilIFoundYouCover.png',
+        cover: process.env.PUBLIC_URL + '/UntilIFoundYou.png',
     },
 ];
 export default songs;
