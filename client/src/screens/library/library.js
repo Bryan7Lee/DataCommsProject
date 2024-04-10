@@ -29,8 +29,8 @@ export default function Library() {
  const handleSongButtonClick = (song) => {
   console.log("Song clicked:", song.title);
   //add to the queue somehow?
-  addToQueue(song.title, song.artist);
-  console.log("Queue:", qsongs);
+  //addToQueue(song.title, song.artist);
+  //console.log("Queue:", qsongs);
 
 };
 
@@ -57,8 +57,8 @@ return (
                 <img src={song.cover} alt={"ALBUM"} />
                   </div>
                   <div className="song-details">
-                    <p className="song-title">{song.title}</p>
-                    <p className="song-artist">{song.artist}</p>
+                    <p className="song-title-library">{song.title}</p>
+                    <p className="song-artist-library">{song.artist}</p>
                   </div>
                 </button>
               </li>

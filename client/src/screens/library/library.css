@@ -75,10 +75,12 @@
     flex-direction: column;
 }
 
-.song-button .song-title {
+.song-button .song-title-library {
     font-size: 12px; /* Adjust the font size of the song title */
+    color: white;
 }
 
-.song-button .song-artist {
+.song-button .song-artist-library {
     font-size: 12px; /* Adjust the font size of the song artist */
+    color: grey;
 }
