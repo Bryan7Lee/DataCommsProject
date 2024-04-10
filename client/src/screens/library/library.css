@@ -67,8 +67,7 @@
     width: 50px; /* Adjust the width of the cover image */
     height: auto; /* Maintain aspect ratio */
     margin-right: 25px;
-    margin-left: 20px;
-    
+    margin-left: 20px;   
 }
 
 .song-button .song-details{
