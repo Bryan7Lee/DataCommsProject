@@ -1,50 +1,126 @@
-  .player-left-body {
-    width: 37%;
-  }
+.MUSICPLAYERBODYHERE {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
+  color: white;
+}
+
+.img-area {
+  height: 400px;
+  width: 400px;
+  background: red;
+  border-radius: 10px;
+  box-shadow: 0px 6px 12px var(--lightwshadow);
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.img-area img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.song-details{
+  text-align: center;
+}
+
+.song-details .song-title {
+  font-size: 58px;
+  font-weight: bold;
+  margin: 10px;
+  color: #fff;
+}
+
+.song-details .song-artist {
+  color: #B5B5B5;
+  font-size: 29px;
+  font-weight: 500;
+}
+
+.progress-bar {
+  width: 510px;
+  cursor: pointer;
+  outline: none;
+  height: 6px;
+  border-radius: 100px;
+
+  -webkit-appearance: none;
+  appearance: none;
+
+  background: transparent;
+  overflow: hidden;
   
-  .player-right-body {
-    width: 63%;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-  }
+  /* TRACK SETTINGS*/
+  --track-color: #4D4D4D;
+  --track-color-filled: #FFFFFF;
+  --track-color-filled-hover: #1DB954;
+  /* thumb SETTINGS*/
+  --thumb-color: #FFFFFF; /* Default color */
+  --thumb-color-hover: #1DB954; /* Color on hover */
+}
+
+/* Style the track */
+.progress-bar::-webkit-slider-runnable-track {
+  background-color: var(--track-color);
+  height: 6px;
+  border-radius: 9999999999999px;
+}
+
+.progress-bar::-moz-range-track {
+  background-color: var(--track-color);
+  height: 0.5rem;
+  border-radius: 9999999999999px;
+}
+
+/* Style the thumb */
+.progress-bar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
   
-  .song-title {
-    text-align: center;
-    font-size: 58px;
-    font-weight: bold;
-    margin: 0px;
-    color: #c4d0e3;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
-    -webkit-box-orient: vertical;
-  }
+  background-color: var(--thumb-color);
+
+  box-shadow: -402px 0 0 400px var(--track-color-filled);
+  height: 6px;
+  width: 3px;
+  border-radius: 100px;
+
+  transition: .1s ease-in-out;
+}
+
+.progress-bar::-moz-range-thumb {
+  -webkit-appearance: none;
+  appearance: none;
   
-  .song-artist {
-    color: #9aa9c2;
-    font-size: 14px;
-    font-weight: 500;
-  }
-  
-  .player-right-bottom {
-    align-items: center;
-    width: 100%;
-    flex-direction: column;
-  }
-  
-  .song-duration {
-    width: 50%;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    align-items: center;
-  }
-  
-  .duration {
-    font-size: 20px;
-    font-weight: 700;
-    margin: 0;
-    color: #c4d0e3;
-  }
+  background-color: var(--thumb-color);
+
+  box-shadow: -402px 0 0 400px var(--track-color-filled);
+  height: 6px;
+  width: 3px;
+  border-radius: 100px;
+
+  transition: .1s ease-in-out;
+}
+
+/* Changing color on hover */
+.progress-bar:hover::-webkit-slider-thumb {
+  background: var(--track-color-filled-hover);
+  box-shadow: -402px 0 0 400px var(--track-color-filled-hover);
+}
+
+.timestamps {
+  display: flex;
+  justify-content: space-between;
+  width: 510px;
+  font-size: 13px;
+  color: #A7A7A7;
+  font-weight: 600;
+}
+
+.controls {
+  margin-top: 20px;
+  justify-content: space-evenly;
+}

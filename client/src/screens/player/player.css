@@ -1,14 +1,16 @@
 .player-body {
   width: 68%;
-  height: 100%;
-  margin-right: 2px;
+  height: 97%;
+  margin-left: 11px;
+  margin: auto;
+  opacity: 1;
   }
   
 .queue-body {
   width: 30%;
   height: 100%;
-
 }
+
 .qsong-button {
   width: 100%; /* Adjust width as needed */
   border: 5px solid #121212; /* Add border */
@@ -19,6 +21,7 @@
   align-items: center;
   padding: 5px;
 }
+
 .queue-list ul{
   list-style-type: none;
   padding: 0;
@@ -30,12 +33,13 @@
 .qsong-button .qsong-title {
   font-size: 12px; /* Adjust the font size of the song title */
   color: white;
-
 }
+
 .qsong-button .qsong-artist {
   font-size: 12px; /* Adjust the font size of the song title */
   color: white;
 }
+
 .body{
   width: 77%;
   position: relative;
@@ -48,14 +52,6 @@
   color: white;
   flex-direction: row;
   justify-content: space-evenly;
-}
-
-.music-player{
-    width: 350px;
-    height: 550px;
-    border-radius: 15px;
-    background-color: #1ED760;
-    padding: 30px;
 }
 
 flex {
