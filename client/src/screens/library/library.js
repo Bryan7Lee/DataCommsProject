@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { IconContext } from "react-icons";
 import { BiLibrary } from "react-icons/bi";
 import "./library.css"
-import songs from "./song_list.js"; // Import the renderSongs function
+import songs from "./song_list.js"; // Import the songs 
 
 function display_cover(src){
   var img = document.createElement("img");
@@ -20,7 +20,6 @@ export default function Library() {
 
   const [songList, setSongsList] = useState([]);
   //const [queue, setQueue] = useState([]);
-  //call renderSongs()
   useEffect(() => {
 
     setSongsList(songs);
@@ -30,7 +29,7 @@ export default function Library() {
  const handleSongButtonClick = (song) => {
   console.log("Song clicked:", song.title);
   //add to the queue somehow?
-  addToQueue(song.title, song.artist);
+  //addToQueue(song.title, song.artist);
 };
 
 const handleSongButtonDoubleClick = (song) => {

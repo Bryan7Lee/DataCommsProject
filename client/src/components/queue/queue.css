@@ -1,0 +1,28 @@
+.qsong-button {
+    width: 100%; /* Adjust width as needed */
+    border: 5px solid #121212; /* Add border */
+    background-color: #161616; /* Add background color */
+    text-align: left; /* Align text to the left */
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+  }
+  
+  .queue-list ul{
+    list-style-type: none;
+    padding: 0;
+  }
+  .queue-list li{
+    display:block;
+    align-items: right;
+  }
+  .qsong-button .qsong-title {
+    font-size: 12px; /* Adjust the font size of the song title */
+    color: white;
+  }
+  
+  .qsong-button .qsong-artist {
+    font-size: 12px; /* Adjust the font size of the song title */
+    color: white;
+  }

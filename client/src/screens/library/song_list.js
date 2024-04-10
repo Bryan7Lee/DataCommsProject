@@ -10,6 +10,8 @@ let songs = [
         path:  'seeyouagain_tylerthecreator',
         artist:'Tyler, The Creator',
         cover: 'seeyouagain_tylerthecreator',
+    }, 
+    {
         title: 'Hey Soul Sister',
         path:  '/client/src/assets/Hey Soul Sister.m4a',
         artist:' Train',
