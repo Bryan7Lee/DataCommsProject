@@ -4,17 +4,6 @@ import { BiLibrary } from "react-icons/bi";
 import "./library.css"
 import songs from "./song_list.js"; // Import the songs 
 
-function display_cover(src){
-  var img = document.createElement("img");
-  img.src = src;
-  img.width = 500;
-  img.height = 500;
-  img.alt = 'ALBUM';
-
-  document.body.appendChild(img);
-  
-}
-
 export default function Library() {
   
 
