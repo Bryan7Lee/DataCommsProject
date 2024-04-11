@@ -7,19 +7,19 @@ const songs = [
     }, 
     {
         title: 'Hey Soul Sister',
-        path:  process.env.PUBLIC_URL + '/Hey Soul Sister.m4a',
+        path:  process.env.PUBLIC_URL + '/HeySoulSister.m4a',
         artist:' Train',
         cover: process.env.PUBLIC_URL + '/HeySoulSisterCover.jpg',
     },
     {
         title: 'Leave Me Slowly',
-        path:  process.env.PUBLIC_URL + '/Leave Me Slowly.m4a',
+        path:  process.env.PUBLIC_URL + '/LeaveMeSlowly.m4a',
         artist:'Lewis Capaldi',
         cover: process.env.PUBLIC_URL + '/LeaveMeSlowlyCover.jpg',
     },
     {
         title: 'On The Loose',
-        path:  process.env.PUBLIC_URL + '/On the Loose.m4a',
+        path:  process.env.PUBLIC_URL + '/OntheLoose.m4a',
         artist:' Niall Horan',
         cover: process.env.PUBLIC_URL + '/OnTheLooseCover.jpg',
     },

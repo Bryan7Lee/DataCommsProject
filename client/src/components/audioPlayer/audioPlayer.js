@@ -24,14 +24,50 @@ export default function AudioPlayer(){
         songPath: process.env.PUBLIC_URL + '/seeyouagain_tylerthecreator.mp3',
         songCover: process.env.PUBLIC_URL + '/seeyouagain_tylerthecreator.jpg'
     })
+    // update song details when switching songs
+    const updateSongDetails = (index)=>{
+        let songIndex = songs[index];
+        currentAudio.current.src = songIndex.songSrc;
+        currentAudio.current.play();
+        changeSongDetails({
+            songTitle: songIndex.title,
+            songArtist: songIndex.artist,
+            songPath: songIndex.path,
+            songCover: songIndex.cover
+        })
+        setIsAudioPlaying(true);
+    }
 
     const updateProgressBar = (e)=>{
         currentAudio.current.currentTime = (currentAudio.current.duration / 100) * e.target.value;
         setAudioProgress(e.target.value+1);
     }
 
-    const goToNextSong = ()=>{
-        
+    // play next song
+    const playNextSong = ()=>{
+        if (listIndex >= songs.length - 1) {
+            setListIndex(0);
+            updateSongDetails(0);
+        }
+        else{
+            let nextIndex = listIndex + 1;
+            setListIndex(nextIndex);
+            updateSongDetails(nextIndex);
+        }
+    }
+
+    // play previous song
+    const playPreviousSong = ()=>{
+        if (listIndex === 0) {
+            let previousIndex = songs.length - 1;
+            setListIndex(previousIndex);
+            updateSongDetails(previousIndex);
+            }
+        else{
+            let previousIndex = listIndex - 1;
+            setListIndex(previousIndex)
+            updateSongDetails(previousIndex);
+        }
     }
 
     //play and pause audio
@@ -42,10 +78,11 @@ export default function AudioPlayer(){
         if (audio.paused) {
             audio.play();
             setIsAudioPlaying(true)
-          } else{
+        } 
+        else { 
             audio.pause();
             setIsAudioPlaying(false)
-          }
+        }
     }
 
     //update song progress
@@ -70,7 +107,7 @@ export default function AudioPlayer(){
 
     return (
     <div className="MUSICPLAYERBODYHERE">
-        <audio src = {currentSongDetails.songPath} ref={currentAudio} onEnded={goToNextSong} onTimeUpdate={handleAudioUpdate}></audio>
+        <audio src = {currentSongDetails.songPath} ref={currentAudio} onEnded={playNextSong} onTimeUpdate={handleAudioUpdate}></audio>
         <div className="img-area">
             <img src={currentSongDetails.songCover} alt ="song cover img"></img>
         </div>
@@ -85,9 +122,9 @@ export default function AudioPlayer(){
         </div>
         <div className="controls">
             <IconContext.Provider value={{ size: "40px"}}>
-                <IoPlaySkipBackSharp />
+                <IoPlaySkipBackSharp onClick={playPreviousSong}/>
                 <IoPlayCircle onClick={audioPausePlay}/>
-                <IoPlaySkipForwardSharp/>
+                <IoPlaySkipForwardSharp onClick={playNextSong}/>
             </IconContext.Provider>
         </div>
         <script src="js/song-list.js"></script>
