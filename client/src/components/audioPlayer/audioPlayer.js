@@ -11,12 +11,11 @@ export default function AudioPlayer(){
     
     const currentAudio = useRef()
     const [audioProgress, setAudioProgress] = useState(0);
-    const [isAudioPlaying, setIsAudioPlaying] = useState(false);
+    const [isAudioPlaying, setIsAudioPlaying] = useState(true);
     const [listIndex, setListIndex] = useState(0);
     const [songCurrentTime, setCurrentTime] = useState('00:00');
     const [songTotalLength, setTotalLength] = useState('03:00');
 
-    /* THIS NEEDS TO BE UPDATED TO USE THE SONG LIBRARY AND CHANGE FOR WHEN SONG CHANGES*/ 
     // holds all song details of CURRENT SONG 
     const [currentSongDetails, changeSongDetails] = useState({
         songTitle: 'See You Again',
@@ -27,8 +26,8 @@ export default function AudioPlayer(){
     // update song details when switching songs
     const updateSongDetails = (index)=>{
         let songIndex = songs[index];
-        currentAudio.current.src = songIndex.songSrc;
-        currentAudio.current.play();
+        let playPromise = currentAudio.current.play()
+        currentAudio.current.src = songIndex.path;
         changeSongDetails({
             songTitle: songIndex.title,
             songArtist: songIndex.artist,
@@ -38,6 +37,7 @@ export default function AudioPlayer(){
         setIsAudioPlaying(true);
     }
 
+    // function to make progress bar update as the song progresses
     const updateProgressBar = (e)=>{
         currentAudio.current.currentTime = (currentAudio.current.duration / 100) * e.target.value;
         setAudioProgress(e.target.value+1);
@@ -72,15 +72,14 @@ export default function AudioPlayer(){
 
     //play and pause audio
     const audioPausePlay = ()=>{
-        const audio = currentAudio.current
-        audio.volume = .2
+        currentAudio.current.volume = .2
 
-        if (audio.paused) {
-            audio.play();
+        if (currentAudio.current.paused) {
+            currentAudio.current.play();
             setIsAudioPlaying(true)
         } 
         else { 
-            audio.pause();
+            currentAudio.current.pause();
             setIsAudioPlaying(false)
         }
     }
@@ -123,7 +122,14 @@ export default function AudioPlayer(){
         <div className="controls">
             <IconContext.Provider value={{ size: "40px"}}>
                 <IoPlaySkipBackSharp onClick={playPreviousSong}/>
-                <IoPlayCircle onClick={audioPausePlay}/>
+                {isAudioPlaying? 
+                    <IoPlayCircle onClick={()=>{
+                        audioPausePlay();
+                        setIsAudioPlaying(!isAudioPlaying)}}/>:
+                    <IoPauseCircle onClick={()=>{
+                        audioPausePlay();
+                        setIsAudioPlaying(!isAudioPlaying)}} />
+                }
                 <IoPlaySkipForwardSharp onClick={playNextSong}/>
             </IconContext.Provider>
         </div>
