@@ -16,16 +16,22 @@ export default function Player() {
 
   return (
     <div className = "page-body flex">
-
       <div className = "player-body">
         <AudioPlayer/>
       </div>
-
       <div className = "queue-body">
         <div className="btn-body">
-          
         </div>
       </div>
     </div>
   );
 }
+
+// Queue stuff
+/*
+      <div className = "queue-body">
+        <div className="btn-body">
+          
+        </div>
+      </div>
+*/

@@ -2,10 +2,12 @@
 import React, { useState, useEffect } from "react";
 import { IconContext } from "react-icons";
 import { BiLibrary } from "react-icons/bi";
-import "./library.css";
-import songs from "./song_list.js";
-import AudioPlayer from "../../components/audioPlayer/audioPlayer";
 
+import "./library.css"
+import songs from "./song_list.js"; // Import the songs 
+
+export default function Library() {
+  
 const Library = () => {
   const [libIndex, setLibIndex] = useState(0);
   const [songList, setSongsList] = useState([]);
@@ -52,5 +54,3 @@ const Library = () => {
     </div>
   );
 };
-
-export default Library;
