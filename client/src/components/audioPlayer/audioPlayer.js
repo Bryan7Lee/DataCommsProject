@@ -1,4 +1,4 @@
-import React, {useRef, useState} from "react";
+import React, {useRef, useState, useEffect} from "react";
 import "./audioPlayer.css";
 import { IconContext } from "react-icons";
 import { IoPlaySkipBackSharp } from "react-icons/io5";
@@ -6,15 +6,45 @@ import { IoPauseCircle } from "react-icons/io5";
 import { IoPlayCircle  } from "react-icons/io5";
 import { IoPlaySkipForwardSharp } from "react-icons/io5";
 import songs from "../../screens/library/song_list";
+import io from "socket.io-client";
 
-export default function AudioPlayer(){
-    
-    const currentAudio = useRef()
+const socket = io.connect("http://localhost:3001");
+
+export default function AudioPlayer(libIndex){
+
+    /* server setup */
+    const [roomID, changeRoomID] = useState("");
+
+    const joinRoom = () => {
+        if (roomID != "") {
+            socket.emit("join_room", roomID);
+        }
+    }
+
+    useEffect(() => {
+        socket.on("receiveskipforward", () => {
+            console.log("Received skip forward signal.")
+            playNextSong();
+        })
+        socket.on("receiveplayprevious", () => {
+            console.log("Received play previous signal.")
+            playPreviousSong();
+        })
+    }, [socket]);
+
+    // useState and useRef hooks
+    const currentAudio = useRef();
     const [audioProgress, setAudioProgress] = useState(0);
-    const [isAudioPlaying, setIsAudioPlaying] = useState(true);
+    const [isAudioPlaying, setIsAudioPlaying] = useState(false);
     const [listIndex, setListIndex] = useState(0);
     const [songCurrentTime, setCurrentTime] = useState('00:00');
     const [songTotalLength, setTotalLength] = useState('03:00');
+
+    // play clicked song
+    const playClickedSong = (libIndex)=>{
+        setListIndex(libIndex);
+        updateSongDetails(libIndex);
+    }
 
     // holds all song details of CURRENT SONG 
     const [currentSongDetails, changeSongDetails] = useState({
@@ -24,10 +54,23 @@ export default function AudioPlayer(){
         songCover: process.env.PUBLIC_URL + '/seeyouagain_tylerthecreator.jpg'
     })
     // update song details when switching songs
-    const updateSongDetails = (index)=>{
+    const updateSongDetails = (index) =>{
         let songIndex = songs[index];
-        let playPromise = currentAudio.current.play()
         currentAudio.current.src = songIndex.path;
+        currentAudio.current.volume = 0.2;
+
+        let playPromise = currentAudio.current.play();
+        if (playPromise !== undefined) {
+            playPromise.then(_ => {
+              // Automatic playback paused.
+              currentAudio.current.pause();
+            })
+            .catch(error => {
+              // Catch play() by load request error and replay it again
+              currentAudio.current.play();
+            });
+          }
+
         changeSongDetails({
             songTitle: songIndex.title,
             songArtist: songIndex.artist,
@@ -54,6 +97,7 @@ export default function AudioPlayer(){
             setListIndex(nextIndex);
             updateSongDetails(nextIndex);
         }
+        socket.emit("skipforward", roomID);
     }
 
     // play previous song
@@ -68,6 +112,7 @@ export default function AudioPlayer(){
             setListIndex(previousIndex)
             updateSongDetails(previousIndex);
         }
+        socket.emit("playprevious", roomID);
     }
 
     //play and pause audio
@@ -107,6 +152,12 @@ export default function AudioPlayer(){
     return (
     <div className="MUSICPLAYERBODYHERE">
         <audio src = {currentSongDetails.songPath} ref={currentAudio} onEnded={playNextSong} onTimeUpdate={handleAudioUpdate}></audio>
+        <input 
+            placeholder="Room ID"
+            onChange={(event) => {
+                changeRoomID(event.target.value);
+        }}/>
+        <button onClick={joinRoom}> Join Room</button>
         <div className="img-area">
             <img src={currentSongDetails.songCover} alt ="song cover img"></img>
         </div>
@@ -123,10 +174,10 @@ export default function AudioPlayer(){
             <IconContext.Provider value={{ size: "40px"}}>
                 <IoPlaySkipBackSharp onClick={playPreviousSong}/>
                 {isAudioPlaying? 
-                    <IoPlayCircle onClick={()=>{
+                    <IoPauseCircle onClick={()=>{
                         audioPausePlay();
                         setIsAudioPlaying(!isAudioPlaying)}}/>:
-                    <IoPauseCircle onClick={()=>{
+                    <IoPlayCircle onClick={()=>{
                         audioPausePlay();
                         setIsAudioPlaying(!isAudioPlaying)}} />
                 }

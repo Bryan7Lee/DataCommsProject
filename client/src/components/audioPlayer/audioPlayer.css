@@ -9,13 +9,14 @@
 }
 
 .img-area {
-  height: 400px;
-  width: 400px;
+  margin-top: 10px;
+  height: 350px;
+  width: 350px;
   background: red;
   border-radius: 10px;
   box-shadow: 0px 6px 12px var(--lightwshadow);
   overflow: hidden;
-  margin-bottom: 10px;
+
 }
 
 .img-area img {
@@ -121,6 +122,6 @@
 }
 
 .controls {
-  margin-top: 20px;
+
   justify-content: space-evenly;
 }

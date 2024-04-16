@@ -1,48 +1,29 @@
-import React, { useEffect, useState } from "react";
+// library.js
+import React, { useState, useEffect } from "react";
 import { IconContext } from "react-icons";
 import { BiLibrary } from "react-icons/bi";
-import "./library.css"
-import songs from "./song_list.js"; // Import the songs 
+import "./library.css";
+import songs from "./song_list.js";
+import AudioPlayer from "../../components/audioPlayer/audioPlayer";
 
-function display_cover(src){
-  var img = document.createElement("img");
-  img.src = src;
-  img.width = 500;
-  img.height = 500;
-  img.alt = 'ALBUM';
-
-  document.body.appendChild(img);
-  
-}
-
-export default function Library() {
-  
-
+const Library = () => {
+  const [libIndex, setLibIndex] = useState(0);
   const [songList, setSongsList] = useState([]);
-  //const [queue, setQueue] = useState([]);
+
   useEffect(() => {
-
     setSongsList(songs);
-
   }, []);
 
- const handleSongButtonClick = (song) => {
-  console.log("Song clicked:", song.title);
-  //add to the queue somehow?
-  //addToQueue(song.title, song.artist);
-};
+  const handleSongPlay = (index) => {
+    console.log("Playing song:", songs[index]);
+    setLibIndex(index);
+  };
 
-const handleSongButtonDoubleClick = (song) => {
-  console.log("Song double clicked:", song.title);
-  //start playing the song immediately?
-
-};
-
-return (
+  return (
     <div className="library">
       <div className="btn-body">
         <IconContext.Provider value={{ size: "22px", className: "btn-icon" }}>
-          {<BiLibrary />}
+          <BiLibrary />
         </IconContext.Provider>
         <p className="lib-title">Library</p>
       </div>
@@ -50,20 +31,26 @@ return (
         <ul>
           {songList.map((song, index) => (
             <li key={index}>
-              <button className="song-button" onClick={() => handleSongButtonClick(song)}  onDoubleClick={()=> handleSongButtonDoubleClick(song)}>
+              <button
+                className="song-button"
+                onClick={() => handleSongPlay(index)}
+              >
                 <div className="song-info">
-                <div className="img-wrapper-lib"><img src={song.cover} alt={"ALBUM"} /></div>
+                  <div className="img-wrapper-lib">
+                    <img src={song.cover} alt={"ALBUM"} />
                   </div>
-                  <div className="song-details">
-                    <p className="song-title-library">{song.title}</p>
-                    <p className="song-artist-library">{song.artist}</p>
-                  </div>
-                </button>
-              </li>
-             ))}
-          </ul> 
+                </div>
+                <div className="song-details">
+                  <p className="song-title-library">{song.title}</p>
+                  <p className="song-artist-library">{song.artist}</p>
+                </div>
+              </button>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
- }  
+};
 
+export default Library;

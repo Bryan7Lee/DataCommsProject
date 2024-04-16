@@ -17,9 +17,30 @@ const io = new Server(server, {
 });
 
 io.on('connection', (socket) => {
-  console.log('User connected: ${socket.id}');
-  socket.on('chat_msg', (msg) => {
-    console.log('message: ' + msg);
+  // when a client connects
+  console.log('Client opened with ID: ' + socket.id);
+
+  // when a client joins a room
+  socket.on('join_room', roomID => {
+    console.log('Client (' + socket.id + ') joined room: ' + roomID);
+    socket.join(roomID);
+  });
+
+  // when a client disconnects
+  socket.on('disconnect', () => {
+    console.log('Client closed with ID: ' + socket.id);
+  })
+
+  // when a user skips forward
+  socket.on("skipforward", (room) => {
+    console.log('User skipped forward; room: ' + room);
+    socket.to(room).emit("receiveskipforward");
+  });
+  
+  // when a user plays previous song
+  socket.on("playprevious", (room) => {
+    console.log('User played previous; room: ' + room);
+    socket.to(room).emit("receiveplayprevious");
   });
 });
 
