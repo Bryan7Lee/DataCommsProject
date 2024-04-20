@@ -18,6 +18,7 @@ export default function AudioPlayer(libIndex){
     const joinRoom = () => {
         if (roomID != "") {
             socket.emit("join_room", roomID);
+            console.log("the room ID is:", roomID);
         }
     }
 
@@ -29,6 +30,16 @@ export default function AudioPlayer(libIndex){
         socket.on("receiveplayprevious", () => {
             console.log("Received play previous signal.")
             playPreviousSong();
+        })
+        socket.on("receivepressplay", () => {
+            console.log("Received press play signal.")
+            audioPausePlay();
+            setIsAudioPlaying(!isAudioPlaying);
+        })
+        socket.on("receivepresspause", () => {
+            console.log("Received press pause signal.")
+            audioPausePlay();
+            setIsAudioPlaying(!isAudioPlaying);
         })
     }, [socket]);
 
@@ -64,10 +75,12 @@ export default function AudioPlayer(libIndex){
             playPromise.then(_ => {
               // Automatic playback paused.
               currentAudio.current.pause();
+              console.log("song paused");
             })
             .catch(error => {
               // Catch play() by load request error and replay it again
               currentAudio.current.play();
+              console.log("song play");
             });
           }
 
@@ -122,10 +135,15 @@ export default function AudioPlayer(libIndex){
         if (currentAudio.current.paused) {
             currentAudio.current.play();
             setIsAudioPlaying(true)
+            socket.emit("songplaying", roomID);
+            console.log("song playing in room ", roomID);
+
         } 
         else { 
             currentAudio.current.pause();
             setIsAudioPlaying(false)
+            socket.emit("songpaused", roomID);
+            console.log("song paused in room ", roomID);
         }
     }
 

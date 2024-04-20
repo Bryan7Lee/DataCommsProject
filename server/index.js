@@ -42,7 +42,21 @@ io.on('connection', (socket) => {
     console.log('User played previous; room: ' + room);
     socket.to(room).emit("receiveplayprevious");
   });
+
+    // when a user presses play on a song
+    socket.on("songplaying", (room) => {
+      console.log('User pressed play; room: ' + room);
+      socket.to(room).emit("receivepressplay");
+    });
+
+      // when a user presses pause on a song
+    socket.on("songpaused", (room) => {
+      console.log('User pressed pause; room: ' + room);
+      socket.to(room).emit("receivepresspause");
+    });
 });
+
+
 
 server.listen(PORT, () => {
     console.log('Server is running at http://localhost:' + PORT);

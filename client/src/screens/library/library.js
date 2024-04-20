@@ -8,7 +8,6 @@ import songs from "./song_list.js"; // Import the songs
 
 export default function Library() {
   
-const Library = () => {
   const [libIndex, setLibIndex] = useState(0);
   const [songList, setSongsList] = useState([]);
 
@@ -53,4 +52,4 @@ const Library = () => {
       </div>
     </div>
   );
-};
+}
