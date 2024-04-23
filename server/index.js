@@ -11,8 +11,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, { 
     cors: {
-        origin: "http://localhost:3000",
-        methods: ["TEST1", "TEST2"],
+        origin: "http://localhost:3000"
     },
 });
 
@@ -26,37 +25,45 @@ io.on('connection', (socket) => {
     socket.join(roomID);
   });
 
+  // when a client leaves a room
+  socket.on('leave_room', prevRoomID => {
+    console.log('Client (' + socket.id + ') left room: ' + prevRoomID);
+    socket.leave(prevRoomID);
+  })
+
   // when a client disconnects
   socket.on('disconnect', () => {
     console.log('Client closed with ID: ' + socket.id);
   })
 
   // when a user skips forward
-  socket.on("skipforward", (room) => {
+  socket.on("skipforward",  (room, index) => {
     console.log('User skipped forward; room: ' + room);
-    socket.to(room).emit("receiveskipforward");
+    socket.to(room).emit("receiveskipforward", index);
+    console.log("Emitting signal to room:" + room);
   });
   
   // when a user plays previous song
-  socket.on("playprevious", (room) => {
+  socket.on("playprevious",  (room, index) => {
     console.log('User played previous; room: ' + room);
-    socket.to(room).emit("receiveplayprevious");
+    socket.to(room).emit("receiveplayprevious", index);
+    console.log("Emitting signal to room:" + room);
   });
 
     // when a user presses play on a song
-    socket.on("songplaying", (room) => {
-      console.log('User pressed play; room: ' + room);
-      socket.to(room).emit("receivepressplay");
-    });
-
-      // when a user presses pause on a song
-    socket.on("songpaused", (room) => {
+    socket.on("presspause",  (room) => {
       console.log('User pressed pause; room: ' + room);
       socket.to(room).emit("receivepresspause");
+      console.log("Emitting signal to room:" + room);
+    });
+
+    // when a user presses play on a song
+    socket.on("pressplay",  (room) => {
+      console.log('User pressed play; room: ' + room);
+      socket.to(room).emit("receivepressplay");
+      console.log("Emitting signal to room:" + room);
     });
 });
-
-
 
 server.listen(PORT, () => {
     console.log('Server is running at http://localhost:' + PORT);
