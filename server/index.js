@@ -58,9 +58,9 @@ io.on('connection', (socket) => {
     });
 
     // when a user presses play on a song
-    socket.on("pressplay",  (room) => {
+    socket.on("pressplay",  (room, index) => {
       console.log('User pressed play; room: ' + room);
-      socket.to(room).emit("receivepressplay");
+      socket.to(room).emit("receivepressplay", index);
       console.log("Emitting signal to room:" + room);
     });
 });

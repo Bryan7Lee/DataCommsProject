@@ -10,7 +10,7 @@ import io from "socket.io-client";
 
 const socket = io.connect("http://localhost:3001");
 
-export default function AudioPlayer(libIndex){
+export default function AudioPlayer(){
 
     // useState and useRef hooks
     const currentAudio = useRef();
@@ -57,8 +57,9 @@ export default function AudioPlayer(libIndex){
             currentAudio.current.pause();
             setIsAudioPlaying(false);
         })
-        socket.on("receivepressplay", () => {
+        socket.on("receivepressplay", (index) => {
             console.log("Received play signal.")
+            if (index != listIndex)
             currentAudio.current.play();
             setIsAudioPlaying(true);
         })
@@ -75,13 +76,13 @@ export default function AudioPlayer(libIndex){
               // Automatic playback paused.
               currentAudio.current.play();
               console.log("song paused");
-              setIsAudioPlaying(false);
+              setIsAudioPlaying(true);
             })
             .catch(error => {
               // Catch play() by load request error and replay it again
               currentAudio.current.play();
               console.log("song play");
-              setIsAudioPlaying(true);
+              setIsAudioPlaying(false);
             });
           }
         setIsAudioPlaying(true);
@@ -97,6 +98,11 @@ export default function AudioPlayer(libIndex){
     const updateProgressBar = (e)=>{
         setAudioProgress(e.target.value + 1);
         currentAudio.current.currentTime = (currentAudio.current.duration / 100) * e.target.value;
+    }
+
+    // match song details between two unsynced clients
+    const matchClient = () => {
+        
     }
 
     // play next song
