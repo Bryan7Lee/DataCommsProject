@@ -57,11 +57,46 @@ export default function AudioPlayer(){
             currentAudio.current.pause();
             setIsAudioPlaying(false);
         })
-        socket.on("receivepressplay", (index) => {
+        socket.on("receivepressplay", (index, timestamp) => {
             console.log("Received play signal.")
-            if (index != listIndex)
-            currentAudio.current.play();
-            setIsAudioPlaying(true);
+            if (index !== listIndex) {
+                setListIndex(index);
+                let songObj = songs[index];
+                currentAudio.current.src = songObj.path;
+                currentAudio.current.volume = .2
+                let playPromise = currentAudio.current.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(_ => {
+                    // Automatic playback paused.
+                    currentAudio.current.currentTime = timestamp;
+                    currentAudio.current.play();
+                    console.log("song paused");
+                    setIsAudioPlaying(true);
+                    })
+                    .catch(error => {
+                    // Catch play() by load request error and replay it again
+                    currentAudio.current.currentTime = timestamp;
+                    currentAudio.current.play();
+                    console.log("song play");
+                    setIsAudioPlaying(false);
+                    });
+                }
+                setIsAudioPlaying(true);
+                changeSongDetails({
+                    songTitle: songObj.title,
+                    songArtist: songObj.artist,
+                    songPath: songObj.path,
+                    songCover: songObj.cover
+                })
+            }
+            else {
+                currentAudio.current.currentTime = timestamp;
+                currentAudio.current.play();
+                setIsAudioPlaying(true);
+            }
+        })
+        socket.on("receivematchclients", (index, progress) => {
+            matchClient(progress)
         })
     }, [socket]);
 
@@ -101,8 +136,8 @@ export default function AudioPlayer(){
     }
 
     // match song details between two unsynced clients
-    const matchClient = () => {
-        
+    const matchClient = (progress) => {
+        setAudioProgress(isNaN(progress)? 0 : progress)
     }
 
     // play next song
@@ -140,8 +175,9 @@ export default function AudioPlayer(){
 
         if (isAudioPlaying == false) {
             currentAudio.current.play();
+            let timestamp = currentAudio.current.currentTime;
             setIsAudioPlaying(true);
-            socket.emit("pressplay", roomID);
+            socket.emit("pressplay", roomID, listIndex, timestamp);
         } 
         else { 
             currentAudio.current.pause();
@@ -186,7 +222,7 @@ export default function AudioPlayer(){
             <p className="song-title">{currentSongDetails.songTitle}</p>
             <p className="song-artist">{currentSongDetails.songArtist}</p>
         </div>
-        <input type="range" name="songProgressBar" className='progress-bar' onChange={updateProgressBar} value={audioProgress} />
+        <input type="range" name="songProgressBar" className='progress-bar' onChange={updateProgressBar} onInput={matchClient} value={audioProgress} />
         <div className="timestamps">
             <p className="current">{songCurrentTime}</p>
             <p className="total">{songTotalLength}</p>

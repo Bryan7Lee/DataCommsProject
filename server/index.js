@@ -58,9 +58,16 @@ io.on('connection', (socket) => {
     });
 
     // when a user presses play on a song
-    socket.on("pressplay",  (room, index) => {
+    socket.on("pressplay",  (room, index, timestamp) => {
       console.log('User pressed play; room: ' + room);
-      socket.to(room).emit("receivepressplay", index);
+      socket.to(room).emit("receivepressplay", index, timestamp);
+      console.log("Emitting signal to room: " + room + " with index: " + index + " and timestamp: " + timestamp);
+    });
+
+    // when a user skips through the song in time
+    socket.on("matchclients",  (room, index, time) => {
+      console.log('User pressed play; room: ' + room);
+      socket.to(room).emit("receivematchclients", index, time);
       console.log("Emitting signal to room:" + room);
     });
 });
